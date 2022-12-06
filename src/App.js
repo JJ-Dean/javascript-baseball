@@ -11,6 +11,11 @@ class App {
   makeAnswer() {
     this.answerArr = AnswerMaker.makeAnswer();
     console.log(this.answerArr);
+    this.getInput();
+  }
+
+  getInput() {
+    Input.reciveNumber();
   }
 }
 

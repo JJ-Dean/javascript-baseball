@@ -5,9 +5,7 @@ const AnswerMaker = {
     let answerArr = [];
     while (answerArr.length < 3) {
       let newNumber = MissionUtils.Random.pickNumberInRange(1, 9);
-      if (answerArr.indexOf(newNumber) === -1) {
-        answerArr.push(newNumber);
-      }
+      if (answerArr.indexOf(newNumber) === -1) answerArr.push(newNumber);
     }
     return answerArr;
   },
