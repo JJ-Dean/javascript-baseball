@@ -63,6 +63,7 @@ const Input = {
   afterCompare() {
     const result = this.compare.after();
     if (result) return this.afterThreeStrike();
+    if (!result) return this.reciveNumber();
   },
 
   afterThreeStrike() {
