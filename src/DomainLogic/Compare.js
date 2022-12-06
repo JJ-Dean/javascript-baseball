@@ -1,5 +1,4 @@
 class Compare {
-  #input;
   #answer;
 
   constructor(answer) {
@@ -20,7 +19,6 @@ class Compare {
       if (ANSWERARR.includes(number) && ANSWERARR[index] !== number)
         return this.ball++;
     });
-    this.comapreResult();
   }
 
   comapreResult() {

@@ -41,6 +41,7 @@ const Input = {
 
   compareStep() {
     this.compare.initCount(this.inputArr);
+    Output.resultTxt(this.compare);
   },
 };
 
