@@ -1,13 +1,28 @@
 const MissionUtils = require('@woowacourse/mission-utils');
 const Compare = require('../DomainLogic/Compare');
+const AnswerMaker = require('../AnswerMaker');
 const Output = require('./Output');
 
 const Input = {
-  reciveNumber(answerArr) {
-    this.answerArr = answerArr;
+  start() {
+    Output.startTxt();
+    this.makeAnswer();
+  },
+
+  makeAnswer() {
+    this.answerArr = AnswerMaker.makeAnswer();
+    console.log(this.answerArr);
+    this.getInput();
+  },
+
+  getInput() {
+    Input.reciveNumber();
+  },
+
+  reciveNumber() {
     MissionUtils.Console.readLine('숫자를 입력해주세요 : ', (answer) => {
       this.lengthException(answer);
-      this.comparePrepare(this.answerArr);
+      this.comparePrepare();
     });
   },
 
@@ -34,8 +49,8 @@ const Input = {
       throw new Error('중복된 값은 입력할 수 없습니다.');
   },
 
-  comparePrepare(answerArr) {
-    this.compare = new Compare(answerArr);
+  comparePrepare() {
+    this.compare = new Compare(this.answerArr);
     this.compareStep();
   },
 
@@ -61,14 +76,8 @@ const Input = {
   },
 
   retryOrQuit(number) {
-    if (number === '1') return this.retry();
-    if (number === '2') return this.quit();
-  },
-
-  retry() {},
-
-  quit() {
-    MissionUtils.Console.close();
+    if (number === '1') return this.start();
+    if (number === '2') return MissionUtils.Console.close();
   },
 };
 
