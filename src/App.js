@@ -15,7 +15,7 @@ class App {
   }
 
   getInput() {
-    Input.reciveNumber();
+    Input.reciveNumber(this.answerArr);
   }
 }
 
