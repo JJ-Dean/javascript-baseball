@@ -4,9 +4,10 @@ const Output = require('./Output');
 
 const Input = {
   reciveNumber(answerArr) {
+    this.answerArr = answerArr;
     MissionUtils.Console.readLine('숫자를 입력해주세요 : ', (answer) => {
       this.lengthException(answer);
-      this.comparePrepare(answerArr);
+      this.comparePrepare(this.answerArr);
     });
   },
 
@@ -19,7 +20,6 @@ const Input = {
 
   numberException(number) {
     const regNumber = /^[1-9]$/;
-    console.log(number);
     this.inputArr = number.split('').map((x) => {
       if (!regNumber.test(x)) throw new Error('숫자를 입력해주세요.');
       return parseInt(x, 10);
@@ -42,6 +42,33 @@ const Input = {
   compareStep() {
     this.compare.initCount(this.inputArr);
     Output.resultTxt(this.compare);
+    this.afterCompare();
+  },
+
+  afterCompare() {
+    const result = this.compare.after();
+    if (result) return this.afterThreeStrike();
+  },
+
+  afterThreeStrike() {
+    Output.finishTxt();
+    MissionUtils.Console.readLine(
+      '게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요. \n',
+      (answer) => {
+        this.retryOrQuit(answer);
+      }
+    );
+  },
+
+  retryOrQuit(number) {
+    if (number === '1') return this.retry();
+    if (number === '2') return this.quit();
+  },
+
+  retry() {},
+
+  quit() {
+    MissionUtils.Console.close();
   },
 };
 

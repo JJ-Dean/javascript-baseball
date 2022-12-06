@@ -26,8 +26,12 @@ class Compare {
     if (this.ball !== 0) resultTxt += `${this.ball}볼`;
     if (this.strike !== 0) resultTxt += `${this.strike}스트라이크`;
     if (resultTxt === '') resultTxt += `낫싱`;
-    console.log(resultTxt);
     return resultTxt;
+  }
+
+  after() {
+    if (this.strike === 3) return true;
+    if (this.strike !== 3) return false;
   }
 }
 
